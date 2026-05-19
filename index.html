@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>炭火江湖 · 新店引爆与线上运营全案（V2.0 优化版）</title>
+<style>
+:root {
+  --fire-red: #8B1A1A;
+  --fire-deep: #5C0E0E;
+  --charcoal: #2C2C2C;
+  --charcoal-light: #4A4A4A;
+  --gold: #D4A854;
+  --gold-bright: #F0B429;
+  --cream: #FDF6EC;
+  --snow: #FFFBF5;
+  --orange: #E87A30;
+  --warm-gray: #F5F0EB;
+  --text: #1A1A1A;
+  --text-light: #7A7A7A;
+  --shadow: rgba(44,44,44,0.08);
+  --radius: 12px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans SC', 'PingFang SC', sans-serif;
+  background: var(--snow);
+  color: var(--text);
+  line-height: 1.7;
+}
+.header {
+  background: linear-gradient(135deg, #0D0808 0%, var(--fire-deep) 30%, var(--fire-red) 55%, #A03020 80%);
+  padding: 4rem 1.5rem 3.5rem;
+  text-align: center;
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 25%, rgba(232,122,48,0.12) 0%, transparent 55%),
+    radial-gradient(circle at 85% 70%, rgba(212,168,84,0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--gold), var(--orange), var(--fire-red), var(--gold));
+}
+.header-content { position: relative; z-index: 1; }
+.header .badge-top {
+  display: inline-block;
+  background: rgba(212,168,84,0.15);
+  border: 1px solid rgba(212,168,84,0.3);
+  padding: 0.28rem 1.1rem;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+.header h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 700; margin-bottom: 0.2rem; letter-spacing: 3px; }
+.header .subtitle { font-size: clamp(0.85rem, 2.5vw, 1.05rem); opacity: 0.8; font-weight: 300; letter-spacing: 5px; margin-bottom: 0.5rem; }
+.header .tagline { display: inline-block; background: rgba(255,251,245,0.08); border: 1px solid rgba(255,251,245,0.15); padding: 0.3rem 1.2rem; border-radius: 20px; font-size: 0.78rem; letter-spacing: 1px; margin-top: 0.5rem; }
+.header .tagline .hl { color: var(--gold-bright); font-weight: 700; }
+.header .stats { display: flex; justify-content: center; gap: 2.2rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.header .stat-item { text-align: center; }
+.header .stat-num { font-size: 1.4rem; font-weight: 700; color: var(--gold-bright); }
+.header .stat-label { font-size: 0.7rem; opacity: 0.55; margin-top: 0.15rem; letter-spacing: 1px; }
+
+.container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+
+.section { padding: 2.5rem 0; border-bottom: 1px solid rgba(44,44,44,0.06); }
+.section:last-child { border-bottom: none; }
+.section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
+.section-number {
+  background: var(--fire-red);
+  color: var(--cream);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 700; flex-shrink: 0;
+}
+.section-header h2 { font-size: 1.2rem; font-weight: 700; color: var(--charcoal); }
+.section-header h2 span { color: var(--text-light); font-weight: 400; font-size: 0.85rem; margin-left: 0.5rem; }
+
+.card {
+  background: white;
+  border: 1px solid rgba(44,44,44,0.08);
+  border-radius: var(--radius);
+  padding: 1.3rem;
+  margin-bottom: 0.8rem;
+  box-shadow: 0 2px 8px var(--shadow);
+  transition: box-shadow 0.2s;
+}
+.card h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--fire-red);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.card h3 .emoji-icon { font-size: 1.1rem; }
+.card ul { list-style: none; padding: 0; }
+.card ul li { position: relative; padding-left: 1.1rem; margin-bottom: 0.35rem; font-size: 0.85rem; line-height: 1.6; color: var(--text); }
+.card ul li::before { content: '•'; position: absolute; left: 0; color: var(--fire-red); font-weight: 700; }
+.card p { font-size: 0.85rem; line-height: 1.7; color: var(--text); margin-bottom: 0.5rem; }
+.card p:last-child { margin-bottom: 0; }
+.card .tag {
+  display: inline-block;
+  background: rgba(139,26,26,0.06);
+  color: var(--fire-red);
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-right: 0.3rem;
+}
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; }
+@media (max-width: 768px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+.highlight {
+  background: linear-gradient(135deg, rgba(232,122,48,0.06), rgba(212,168,84,0.02));
+  border-left: 3px solid var(--orange);
+  padding: 0.8rem 1rem;
+  border-radius: 0 var(--radius);
+  margin: 0.8rem 0;
+  font-size: 0.85rem;
+}
+.highlight strong { color: var(--fire-red); }
+
+.warning-box {
+  background: linear-gradient(135deg, rgba(139,26,26,0.04), rgba(232,122,48,0.02));
+  border: 1px solid rgba(139,26,26,0.12);
+  border-left: 3px solid var(--fire-red);
+  padding: 1rem 1.2rem;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+.warning-box h4 { font-size: 0.9rem; color: var(--fire-red); margin-bottom: 0.4rem; }
+.warning-box p,
+.warning-box li { font-size: 0.82rem; color: var(--text); }
+
+.strategy-card {
+  background: white;
+  border: 1px solid rgba(44,44,44,0.08);
+  border-radius: var(--radius);
+  padding: 1.3rem;
+  margin-bottom: 0.8rem;
+  box-shadow: 0 2px 8px var(--shadow);
+  border-top: 3px solid var(--fire-red);
+}
+.strategy-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--fire-red); margin-bottom: 0.6rem; }
+.strategy-card p,
+.strategy-card li { font-size: 0.85rem; line-height: 1.6; color: var(--text); }
+
+.price-table { width: 100%; border-collapse: collapse; margin: 0.6rem 0; font-size: 0.82rem; }
+.price-table th { background: var(--fire-deep); color: var(--cream); padding: 0.5rem 0.8rem; text-align: left; font-weight: 600; }
+.price-table td { padding: 0.4rem 0.8rem; border-bottom: 1px solid rgba(44,44,44,0.06); }
+.price-table tr:nth-child(even) td { background: rgba(139,26,26,0.02); }
+
+.timeline { display: flex; gap: 0; margin: 1rem 0; overflow-x: auto; }
+.timeline-item {
+  flex: 1;
+  min-width: 180px;
+  padding: 1rem;
+  border-radius: var(--radius);
+  position: relative;
+}
+.timeline-item .phase { font-size: 0.72rem; font-weight: 700; color: white; display: inline-block; padding: 0.15rem 0.6rem; border-radius: 3px; margin-bottom: 0.5rem; }
+.timeline-item h4 { font-size: 0.9rem; margin-bottom: 0.4rem; color: var(--charcoal); }
+.timeline-item ul { list-style: none; padding: 0; }
+.timeline-item ul li { font-size: 0.78rem; padding-left: 0.8rem; position: relative; margin-bottom: 0.25rem; color: var(--text-light); }
+.timeline-item ul li::before { content: '›'; position: absolute; left: 0; color: var(--fire-red); font-weight: 700; }
+
+.flow-chart {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.flow-step {
+  background: var(--fire-deep);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-align: center;
+  min-width: 80px;
+}
+.flow-arrow { color: var(--fire-red); font-size: 1.2rem; font-weight: 700; }
+
+.data-card {
+  background: white;
+  border: 1px solid rgba(44,44,44,0.08);
+  border-radius: var(--radius);
+  padding: 1.3rem;
+  text-align: center;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.data-card .big-num { font-size: 2rem; font-weight: 700; color: var(--fire-red); }
+.data-card .label { font-size: 0.78rem; color: var(--text-light); margin-top: 0.2rem; }
+
+.footer {
+  background: var(--charcoal);
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  padding: 2rem 1.5rem;
+  font-size: 0.78rem;
+  line-height: 1.8;
+}
+.footer strong { color: var(--gold); }
+
+.toc { background: white; border: 1px solid rgba(44,44,44,0.08); border-radius: var(--radius); padding: 1.2rem 1.5rem; margin-bottom: 0; box-shadow: 0 2px 8px var(--shadow); }
+.toc h3 { font-size: 0.9rem; color: var(--fire-red); margin-bottom: 0.5rem; }
+.toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 1rem; }
+.toc-grid a { font-size: 0.82rem; color: var(--charcoal-light); text-decoration: none; padding: 0.15rem 0; }
+.toc-grid a:hover { color: var(--fire-red); }
+@media (max-width: 768px) { .toc-grid { grid-template-columns: 1fr; } }
+
+.collapsible-content { max-height: 0; overflow: hidden; transition: max-height 0.3s; }
+.collapsible-content.open { max-height: 2000px; }
+</style>
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<div class="header">
+  <div class="header-content">
+    <div class="badge-top">🔥 新店引爆 · 线上运营全案</div>
+    <h1>炭火江湖 · 烧烤铜锅涮肉</h1>
+    <div class="subtitle">更名焕新 · 新店引流与线上运营方案 V2.0</div>
+    <div class="tagline">
+      <span class="hl">「老店换新主 × 生态城万达 × 涮烤双模式」</span> — 全域线上引爆，精准截流3公里
+    </div>
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-num">3.5⭐ → 4.5⭐</div>
+        <div class="stat-label">评分目标</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">¥65</div>
+        <div class="stat-label">人均·双模式</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">生态城</div>
+        <div class="stat-label">万达·汇金广场</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">300+</div>
+        <div class="stat-label">首月收藏目标</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">¥8-12万</div>
+        <div class="stat-label">首月营收目标</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ==================== 目录 ==================== -->
+<div class="section" style="padding-bottom: 1rem; border-bottom: none;">
+  <div class="toc">
+    <h3>📑 方案目录</h3>
+    <div class="toc-grid">
+      <a href="#sec1">1. 门店诊断与机会点</a>
+      <a href="#sec2">2. 核心战略五步走</a>
+      <a href="#sec3">3. 大众点评运营方案</a>
+      <a href="#sec4">4. 抖音运营方案</a>
+      <a href="#sec5">5. 小红书运营方案</a>
+      <a href="#sec6">6. 线上付费投放策略</a>
+      <a href="#sec7">7. 线下转化与门店承接</a>
+      <a href="#sec8">8. 私域运营体系</a>
+      <a href="#sec9">9. 美团智能版收银与数据运营</a>
+      <a href="#sec10">10. 竞品对标策略</a>
+      <a href="#sec11">11. 执行节奏与时间线</a>
+      <a href="#sec12">12. 预算分配与KPI</a>
+      <a href="#sec13">13. 风险预案</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 一、门店诊断 ==================== -->
+<div class="section" id="sec1">
+  <div class="section-header">
+    <div class="section-number">1</div>
+    <h2>门店诊断与机会点 <span>｜因店制宜，对症下药</span></h2>
+  </div>
+
+  <div class="warning-box">
+    <h4>⚠️ 核心矛盾：老店差评拖累，必须彻底切割</h4>
+    <p>门店已换新老板、新团队、新出品，但沿用原店主体。大众点评评分仅 <strong>3.5⭐</strong>，历史差评持续影响新客决策。美团/点评的算法逻辑是：评分越低→曝光越少→转化越差→订单越少→恶性循环。<strong>继续用原名，等于背着旧包袱跑新赛道。</strong></p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3><span class="emoji-icon">📉</span> SWOT · 劣势与威胁</h3>
+      <ul>
+        <li><strong>劣势</strong>：3.5⭐低评分、老差评积累、品牌认知混乱</li>
+        <li><strong>劣势</strong>：汇金广场内部位（非万达主楼，靠后）自然流量有限</li>
+        <li><strong>威胁</strong>：生态城万达餐饮竞争激烈（火锅、烧烤、铁锅炖品类多）</li>
+        <li><strong>威胁</strong>：周边聚缘灶台4.8⭐、东北往事等竞品已建立口碑优势</li>
+        <li><strong>威胁</strong>：消费者"老店印象"固化，改观需要强刺激</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="emoji-icon">✅</span> SWOT · 优势与机会</h3>
+      <ul>
+        <li><strong>优势</strong>：涮烤双模式差异化（生态城独一家），覆盖两类客群</li>
+        <li><strong>优势</strong>：新老板有决心，管理服务全面升级</li>
+        <li><strong>优势</strong>：场地设备齐全，改造投入低</li>
+        <li><strong>机会</strong>：生态城人口持续流入（新小区交付），家庭+年轻客群增长</li>
+        <li><strong>机会</strong>：万达商圈成熟，周边3公里覆盖约10万+常住人口</li>
+        <li><strong>机会</strong>：夏季夜宵旺季来临，烧烤+涮肉双品类旺季</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <strong>🎯 核心判断：</strong>这不是一个"挽救老店"的问题，是一个<strong>「挂新牌、起新号、做新店」</strong>的问题。—— 物理上它是一座老店，运营上必须当作新店从头来过。
+  </div>
+</div>
+
+<!-- ==================== 二、核心战略 ==================== -->
+<div class="section" id="sec2">
+  <div class="section-header">
+    <div class="section-number">2</div>
+    <h2>核心战略五步走 <span>｜完整链条，环环相扣</span></h2>
+  </div>
+
+  <div class="flow-chart">
+    <div class="flow-step">🔪 ① 更名切割</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">🆕 ② 平台重建</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">📣 ③ 全域引流</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">🏪 ④ 到店转化</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">🔄 ⑤ 复购锁客</div>
+  </div>
+
+  <div class="grid-2" style="margin-top: 0.5rem;">
+    <div class="strategy-card" style="border-top-color: var(--fire-red);">
+      <h3>🔪 第一步：更名换门头 · 彻底切割</h3>
+      <p>注册全新店名、更换门头招牌、更新店内视觉体系。让所有人一眼知道——"这家店换了"。这是洗掉3.5⭐旧差评的唯一解。𠕇营业执照可变更则变更，不可变更则用"新品牌名+原主体"方式运营（平台侧走新店注册流程）。</p>
+    </div>
+    <div class="strategy-card" style="border-top-color: var(--orange);">
+      <h3>🆕 第二步：平台重建 · 从零起评分</h3>
+      <p>大众点评申请关闭旧页/变更新主体，以新店名全新注册。利用新店保护期（约30天）快速积累好评。新店权重高、曝光好，是冲评分的最佳窗口期。同步开通商户通+智能版收银。</p>
+    </div>
+    <div class="strategy-card" style="border-top-color: var(--gold);">
+      <h3>📣 第三步：全域线上引流 · 三平台联动</h3>
+      <p>大众点评（精准搜索+商户通）→ 抖音（内容种草+同城投流）→ 小红书（图文口碑+搜索SEO）。三个平台分工不同但目标一致：让生态城周边3公里的人知道"炭火江湖来了"。</p>
+    </div>
+    <div class="strategy-card" style="border-top-color: var(--charcoal-light);">
+      <h3>🏪 第四步：到店转化承接 · 体验即口碑</h3>
+      <p>线上引流到店只是开始。门店氛围、服务流程、出品质量、收藏打卡引导、加群引导——每个触点都是转化点。只有到店体验好了，才有后续的好评和复购。</p>
+    </div>
+  </div>
+  <div class="strategy-card" style="border-top-color: var(--gold); margin-top: 0;">
+    <h3>🔄 第五步：复购锁客 · 私域+数据双驱动</h3>
+    <p>用美团智能版收银做复购券触达+私域社群做长期运营。一次到店不是终点，让顾客回来第二次、第三次才是盈利的关键。会员储值体系锁定长期消费。</p>
+  </div>
+</div>
+
+<!-- ==================== 三、大众点评运营方案 ==================== -->
+<div class="section" id="sec3">
+  <div class="section-header">
+    <div class="section-number">3</div>
+    <h2>大众点评运营方案 <span>｜核心战场，必须重视</span></h2>
+  </div>
+
+  <div class="card">
+    <h3>📋 3.1 平台基础搭建（开业前7天完成）</h3>
+    <ul>
+      <li><strong>旧店处理</strong>：联系平台客服，说明门店经营者变更，申请关闭旧门店页面（或变更新主体），防止新旧页面冲突</li>
+      <li><strong>新店注册</strong>：以新品牌名注册，上传全新门头照（装修后）、环境照（干净明亮）、菜品照（诱人特写）</li>
+      <li><strong>信息完整度</strong>：地址精确到门牌号、电话（建议留老板手机）、营业时间（建议11:00-次日02:00，覆盖午市+晚市+夜宵）、推荐菜8-10道</li>
+      <li><strong>店铺简介话术</strong>：突出"新品牌·新团队·新体验 · 生态城首家涮烤双模式 · 炭火江湖，定义夜宵新地标"</li>
+      <li><strong>相册分类</strong>：环境图（5-8张）、菜品图（10-15张）、门头图（2-3张）、氛围图（2-3张）</li>
+      <li><strong>开通商户通</strong>：月费¥2,688，开通后可以做精准投放、自主装修页面、数据查看</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>💰 3.2 团购套餐设计（四级品搭体系）</h3>
+    <table class="price-table">
+      <tr><th>层级</th><th>定价</th><th>产品名</th><th>内容</th><th>定位</th></tr>
+      <tr>
+        <td><strong>🌱 引流款</strong></td>
+        <td>¥19.9</td>
+        <td>单人烤肉饭/50元代金券</td>
+        <td>烤肉饭+小菜或满100减50代金券</td>
+        <td>拉点击量、冲销量排序，不赚钱但赚曝光</td>
+      </tr>
+      <tr>
+        <td><strong>🔥 爆款</strong></td>
+        <td>¥68-88</td>
+        <td>开业特惠双人涮烤套餐</td>
+        <td>半份铜锅+烤串8串+凉菜+饮品</td>
+        <td>开业7天限时秒杀，冲单量、快速累积评价</td>
+      </tr>
+      <tr>
+        <td><strong>💪 主力款</strong></td>
+        <td>¥128-198</td>
+        <td>3-4人涮烤全家福套餐</td>
+        <td>铜锅涮肉（牛羊肉拼盘）+烤串15串+蔬菜+主食</td>
+        <td>对应¥65人均，保证利润，是日常主推款</td>
+      </tr>
+      <tr>
+        <td><strong>👑 利润款</strong></td>
+        <td>¥258-328</td>
+        <td>6-8人朋友聚会套餐</td>
+        <td>大铜锅+烤串30串+凉菜4道+酒水</td>
+        <td>拉高客单价，适合聚餐场景</td>
+      </tr>
+    </table>
+    <div class="highlight" style="margin-top: 0.5rem;">
+      <strong>设计原则：</strong><br>
+      • 引流款拉点击 → 爆款冲销量 → 主力款保利润 → 利润款提客单<br>
+      • 开业首月重点推「爆款 + 主力款」，引流款长期挂<br>
+      • 所有套餐名称带"新店"/"开业"/"炭火"关键词，利于搜索
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>⭐ 3.3 评价运营体系（核心中的核心）</h3>
+    <ul>
+      <li><strong>每日流程</strong>：每桌结账时 → 店员主动引导"收藏店铺+写带图评价送饮品/小菜" → 现场评价 → 当场核验 → 赠送赠品</li>
+      <li><strong>评价话术</strong>："老板新开的店，如果觉得好吃帮忙写个评价吧，送您一份招牌饮品"（注意：不能说"好评"送，可以说"评价/打卡"送）</li>
+      <li><strong>回复管理</strong>：每条好评24h内回复（体现重视顾客），差评必须在2h内回复（展现态度）</li>
+      <li><strong>好评回复模板</strong>："感谢您的支持！炭火江湖换了新老板新团队，口味和服务都全面升级了，欢迎常来！"</li>
+      <li><strong>差评回复模板</strong>："非常抱歉给您带来不好的体验。我们是新接手门店，新团队正在全力磨合。您提到的问题我们已立即整改，邀请您再次到店体验，我们一定让您满意！"</li>
+      <li><strong>首月目标</strong>：收集30条+带图评价，评分从3.5⭐ → 4.0⭐</li>
+    </ul>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>🏆 3.4 平台活动运营</h3>
+      <ul>
+        <li><strong>新店专区报名</strong>：新店注册后自动进入新店保护期，享受额外曝光</li>
+        <li><strong>免费试/霸王餐</strong>：申请5-10个免费试名额，快速积累高质量评价（冲榜关键）</li>
+        <li><strong>周末特惠</strong>：报名平台周末活动，获取额外流量入口</li>
+        <li><strong>夜宵专场</strong>：22:00后夜宵场景标签，生态城夜宵选择少，抢占心智</li>
+        <li><strong>冲刺热门榜</strong>：生态城/滨海新区烧烤热门榜，目标前10</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>📈 3.5 商户通投放策略</h3>
+      <ul>
+        <li><strong>投放半径</strong>：3公里（覆盖生态城核心居住区+万达商圈）</li>
+        <li><strong>人群定向</strong>：25-45岁、夜宵偏好、烧烤/火锅兴趣标签</li>
+        <li><strong>时段投放</strong>：工作日10:00-13:00（午市）、17:00-19:00（晚市决策）、21:00-23:00（夜宵）</li>
+        <li><strong>周末加投</strong>：周六日全天拉满，抢家庭聚餐+朋友聚会客流</li>
+        <li><strong>创意素材</strong>：轮换使用涮肉特写、烤串烟火气、聚餐氛围、开业优惠等内容</li>
+        <li><strong>预算建议</strong>：首月投放预算¥2,000-3,000，根据ROI动态调整</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 四、抖音运营方案 ==================== -->
+<div class="section" id="sec4">
+  <div class="section-header">
+    <div class="section-number">4</div>
+    <h2>抖音运营方案 <span>｜内容种草 × 同城投流</span></h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>📱 4.1 账号定位与内容矩阵</h3>
+      <ul>
+        <li><strong>账号名</strong>：炭火江湖·烧烤铜锅涮肉（生态城店）</li>
+        <li><strong>主页装修</strong>：头图用门店+菜品环境照、简介带地址电话、挂团购链接</li>
+        <li><strong>内容矩阵</strong>：</li>
+        <li style="padding-left: 2rem;">① <strong>菜品大片</strong>：铜锅沸腾特写、烤串滴油、鲜肉现切（视觉冲击）</li>
+        <li style="padding-left: 2rem;">② <strong>出餐过程</strong>：后厨切肉、串串、烤制过程（建立信任）</li>
+        <li style="padding-left: 2rem;">③ <strong>顾客吃播</strong>：真实顾客就餐场景、满足感（种草）</li>
+        <li style="padding-left: 2rem;">④ <strong>老板故事</strong>：新老板接手、升级改造的故事（拉好感）</li>
+        <li style="padding-left: 2rem;">⑤ <strong>开业活动</strong>：优惠信息、限量套餐（转化导向）</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🎬 4.2 拍摄与发布规范</h3>
+      <ul>
+        <li><strong>发布频率</strong>：每天1条（前30天不断更），15-60秒</li>
+        <li><strong>黄金时段</strong>：11:30（午餐决策）、17:30（晚餐决策）、21:00（夜宵决策）</li>
+        <li><strong>拍摄技巧</strong>：特写镜头+慢动作（炭火、油花、热气）、暖色调滤镜</li>
+        <li><strong>标题公式</strong>：生态城新开的XXX | 关键卖点 | 引导话术</li>
+        <li style="padding-left: 1rem;">例："生态城万达新开的涮烤店，人均65吃到撑🔥 #天津美食 #生态城烧烤"</li>
+        <li><strong>挂载团购</strong>：每条视频必须挂团购链接，设置专属抖音价</li>
+        <li><strong>定位</strong>：每次发布必须带上「炭火江湖·烧烤铜锅涮肉」位置</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📢 4.3 达人探店合作</h3>
+    <ul>
+      <li><strong>达人选择标准</strong>：天津滨海新区/生态城本地生活类，粉丝1-10万（小而精准），视频风格真实接地气</li>
+      <li><strong>合作方式</strong>：免费双人餐体验+车马费¥200-500/位，产出1条15-30秒探店视频</li>
+      <li><strong>数量规划</strong>：开业前3天邀请3位达人到店，开业第4-7天再邀2位</li>
+      <li><strong>内容要求</strong>：必须出现门店门头+环境+菜品+价格信息+定位+团购链接</li>
+      <li><strong>效果追踪</strong>：记录每条达人视频的播放量、团购点击量、核销量</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🎯 4.4 抖音同城投流</h3>
+    <ul>
+      <li><strong>投放范围</strong>：生态城核心区+滨海新区（3-5km半径）</li>
+      <li><strong>投放内容</strong>：优先投达人探店视频（真实感强）或开业活动视频（转化率高）</li>
+      <li><strong>预算</strong>：¥100/天 × 30天 = ¥3,000（开业首月）</li>
+      <li><strong>投放时段</strong>：17:00-23:00（晚餐+夜宵决策高峰期）</li>
+      <li><strong>定向人群</strong>：18-45岁、美食兴趣、同城生活</li>
+    </ul>
+  </div>
+
+  <div class="highlight">
+    <strong>🔥 抖音转化钩子：</strong><br>
+    • 刷到视频到店 → 出示视频页面 → 赠烤串5串/饮品2杯<br>
+    • 顾客发抖音带定位@账号 → 当场立减¥15 → 形成内容裂变<br>
+    • 团购专享抖音价（比美团价低¥5-10）→ 引导抖音下单、线下核销
+  </div>
+</div>
+
+<!-- ==================== 五、小红书运营方案 ==================== -->
+<div class="section" id="sec5">
+  <div class="section-header">
+    <div class="section-number">5</div>
+    <h2>小红书运营方案 <span>｜图文种草，精准搜索截流</span></h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>📝 5.1 笔记策略</h3>
+      <ul>
+        <li><strong>发布频率</strong>：每周3-4篇图文笔记</li>
+        <li><strong>图片标准</strong>：9宫格 = 门头1+环境2+菜品4+氛围1+菜单/价格1</li>
+        <li><strong>标题公式</strong>：生态城探店 | 关键词 + 情感钩子</li>
+        <li style="padding-left: 1rem;">例："生态城万达这家新开的涮烤店也太香了吧🔥"</li>
+        <li style="padding-left: 1rem;">例："天津生态城｜人均65实现涮肉烧烤自由！"</li>
+        <li style="padding-left: 1rem;">例："生态城夜宵新去处🔥炭火铜锅+烤串太过瘾了"</li>
+        <li><strong>正文风格</strong>：真实探店视角 + 菜品描述 + 价格信息 + 地址定位</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🔍 5.2 关键词布局（搜索截流）</h3>
+      <ul>
+        <li><strong>核心关键词</strong>：生态城美食、生态城烧烤、生态城夜宵、滨海新区烧烤、天津烧烤推荐</li>
+        <li><strong>长尾关键词</strong>：生态城万达美食、汇金广场美食、涮烤一体、铜锅涮肉烧烤</li>
+        <li><strong>场景关键词</strong>：生态城聚餐、生态城夜宵好去处、生态城朋友聚会</li>
+        <li><strong>布局方式</strong>：标题含1个核心词、正文自然出现3-5个关键词、标签用全</li>
+        <li><strong>标签</strong>：#天津生态城美食 #滨海新区烧烤 #铜锅涮肉 #天津探店 #生态城夜宵 #炭火烧烤</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>👥 5.3 素人探店计划</h3>
+    <ul>
+      <li><strong>目标</strong>：招募5-8位生态城/滨海新区本地素人博主到店体验</li>
+      <li><strong>招募方式</strong>：在小红书搜索"生态城探店"博主，私信邀请免费体验</li>
+      <li><strong>素人标准</strong>：粉丝500-5000，发过美食/探店类内容，真实性高</li>
+      <li><strong>成本</strong>：免费双人餐（成本约¥60-80/位）+ 无车马费</li>
+      <li><strong>产出</strong>：每人1篇图文笔记，要求带定位+团购链接</li>
+      <li><strong>节奏</strong>：开业第1周来3位，第2周来2-3位，持续铺量</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== 六、线上付费投放 ==================== -->
+<div class="section" id="sec6">
+  <div class="section-header">
+    <div class="section-number">6</div>
+    <h2>付费投放策略 <span>｜花对钱，投对量</span></h2>
+  </div>
+
+  <div class="grid-3">
+    <div class="data-card">
+      <div class="big-num">商户通</div>
+      <div class="label">大众点评精准曝光<br>¥2,688/月</div>
+    </div>
+    <div class="data-card">
+      <div class="big-num">抖音投流</div>
+      <div class="label">同城流量加热<br>¥3,000/月</div>
+    </div>
+    <div class="data-card">
+      <div class="big-num">小红书</div>
+      <div class="label">素人探店+薯条<br>¥2,000/月</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 0.5rem;">
+    <h3>💡 投放优先级与节奏</h3>
+    <table class="price-table">
+      <tr><th>阶段</th><th>投放重点</th><th>预算分配</th><th>目标</th></tr>
+      <tr>
+        <td><strong>开业前7天</strong></td>
+        <td>商户通+抖音投流</td>
+        <td>¥1,500</td>
+        <td>开门即有人，首周不冷场</td>
+      </tr>
+      <tr>
+        <td><strong>开业第1-2周</strong></td>
+        <td>商户通+抖音+小红书+达人</td>
+        <td>¥3,500</td>
+        <td>全域曝光，集中引爆</td>
+      </tr>
+      <tr>
+        <td><strong>第3-4周</strong></td>
+        <td>商户通+抖音（稳定投放）</td>
+        <td>¥2,000</td>
+        <td>维持热度，收集好评</td>
+      </tr>
+    </table>
+    <div class="highlight" style="margin-top: 0.5rem;">
+      <strong>核心原则：</strong>先做内容（抖音小红书自然流量），再做付费（商户通+投流放大效果）。内容不行，投再多也是浪费。
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 七、线下转化与门店承接 ==================== -->
+<div class="section" id="sec7">
+  <div class="section-header">
+    <div class="section-number">7</div>
+    <h2>线下转化与门店承接 <span>｜线上引流到店，体验转化复购</span></h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>🏪 7.1 门店视觉与氛围</h3>
+      <ul>
+        <li><strong>门头</strong>：全新招牌+灯箱，夜间醒目，从万达广场汇金广场入口即能看到</li>
+        <li><strong>入口引导</strong>：汇金广场1层入口处放置引导立牌/道旗（解决位置靠后问题）</li>
+        <li><strong>开业氛围</strong>：花篮+横幅"新店开业·全新老板·全面升级"</li>
+        <li><strong>店内</strong>：明档烧烤区（可视炭火烤制）、铜锅区（展示鲜肉片）建立信任</li>
+        <li><strong>菜单展示</strong>：大菜单牌/易拉宝立在门口，吸引路过顾客</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🎯 7.2 到店转化流程（SOP标准化）</h3>
+      <ul>
+        <li><strong>① 迎宾</strong>："欢迎光临炭火江湖！我们是新开业的，今天有开业特惠套餐"</li>
+        <li><strong>② 点餐</strong>：服务员推荐招牌套餐→顾客扫码下单/服务员下单</li>
+        <li><strong>③ 出餐</strong>：明档操作，上菜时主动介绍菜品特色</li>
+        <li><strong>④ 巡台</strong>：询问口味如何、是否需要加菜、赠送小菜</li>
+        <li><strong>⑤ 结账</strong>：收银时引导收藏打卡→加群→写评价→赠品赠送</li>
+        <li><strong>⑥ 送客</strong>："谢谢光临！下次来可以提前在群里预约，有群友优惠"</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>🎉 7.3 到店活动设计</h3>
+      <ul>
+        <li><strong>开业前3天</strong>：全场8折（冲人气、造排队效应）</li>
+        <li><strong>第4-7天</strong>：全场8.8折（维持热度）</li>
+        <li><strong>储值赠送</strong>：充300送50、充500送120、充1000送300（锁定复购）</li>
+        <li><strong>啤酒活动</strong>：指定啤酒买3送1，夜宵时段（21:00后）买2送1</li>
+        <li><strong>老客回归</strong>：凭原店消费记录（任何形式）到店享额外9折+赠菜一道</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🤝 7.4 异业引流合作</h3>
+      <ul>
+        <li><strong>万达影城</strong>：持电影票根到店赠小吃/打9折（影城放炭火江湖宣传单）</li>
+        <li><strong>周边KTV/台球厅</strong>：持小票到店享折扣，店内放对方宣传</li>
+        <li><strong>生态城酒店/公寓</strong>：客房放优惠卡片，客人持卡到店享专属套餐</li>
+        <li><strong>外卖平台</strong>：美团外卖首月满减（满50减8、满100减18），覆盖不想到店的客群</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 八、私域运营 ==================== -->
+<div class="section" id="sec8">
+  <div class="section-header">
+    <div class="section-number">8</div>
+    <h2>私域社群运营体系 <span>｜把公域流量变成自己的池子</span></h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>👥 8.1 社群建立SOP</h3>
+      <ul>
+        <li><strong>入口</strong>：结账时引导→"加老板群，每周有群友专属福利"→扫码入群</li>
+        <li><strong>入群福利</strong>：入群即送¥5代金券（下次使用），形成入群理由</li>
+        <li><strong>群名</strong>："炭火江湖·生态城食客群"</li>
+        <li><strong>首月目标</strong>：300+人入群（平均每天10人）</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>📢 8.2 社群日常运营</h3>
+      <ul>
+        <li><strong>每日固定推送</strong>（不打扰）：</li>
+        <li style="padding-left: 2rem;">11:00 午餐提醒 + 今日推荐菜品</li>
+        <li style="padding-left: 2rem;">17:00 晚餐提醒 + 今日特惠</li>
+        <li style="padding-left: 2rem;">21:00 夜宵提醒 + 啤酒活动</li>
+        <li><strong>每周活动</strong>：群友专属折扣日（每周三群友88折）、抽奖送套餐</li>
+        <li><strong>每月活动</strong>：当月累计消费TOP3送大礼</li>
+        <li><strong>内容运营</strong>：发店内实拍、新品预告、顾客好评截图</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>💳 8.3 会员储值体系</h3>
+    <table class="price-table">
+      <tr><th>储值档位</th><th>赠送金额</th><th>实际到账</th><th>相当于折扣</th><th>适用人群</th></tr>
+      <tr><td>充300元</td><td>送50元</td><td>350元</td><td>≈8.6折</td><td>偶尔来的散客</td></tr>
+      <tr><td>充500元</td><td>送120元</td><td>620元</td><td>≈8.1折</td><td>经常来的回头客</td></tr>
+      <tr><td>充1000元</td><td>送300元</td><td>1300元</td><td>≈7.7折</td><td>忠实老客+聚餐常客</td></tr>
+    </table>
+    <div class="highlight" style="margin-top: 0.5rem;">
+      <strong>推广话术：</strong>"您今天消费¥158，如果充值500的话这单直接免单，卡里还有余额下次用，比买单划算多了！"
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 九、美团智能版收银 ==================== -->
+<div class="section" id="sec9">
+  <div class="section-header">
+    <div class="section-number">9</div>
+    <h2>美团智能版收银与数据运营 <span>｜用数据做决策</span></h2>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <h3>📊 数据驾驶舱</h3>
+      <ul>
+        <li>实时营收、订单量、客单价</li>
+        <li>菜品销量TOP10（指导备货）</li>
+        <li>高峰期时段分析（优化排班）</li>
+        <li>新老客占比分析</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🎯 复购自动化</h3>
+      <ul>
+        <li>团购核销后自动推送复购券</li>
+        <li>7天未到店顾客自动发提醒</li>
+        <li>生日/节日自动送券</li>
+        <li>外卖订单完产后推送优惠</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>⚡ 效率提升</h3>
+      <ul>
+        <li>扫码点餐减少人工成本</li>
+        <li>团购/外卖/堂食统一核销</li>
+        <li>后厨分单打印，出餐提效</li>
+        <li>营业数据自动汇总省心</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 十、竞品对标 ==================== -->
+<div class="section" id="sec10">
+  <div class="section-header">
+    <div class="section-number">10</div>
+    <h2>竞品对标与差异化策略 <span>｜知己知彼</span></h2>
+  </div>
+
+  <div class="card">
+    <h3>🔍 生态城/滨海新区餐饮竞品分析</h3>
+    <table class="price-table">
+      <tr><th>竞品</th><th>评分</th><th>人均</th><th>类型</th><th>炭火江湖的差异化点</th></tr>
+      <tr>
+        <td>聚缘灶台</td>
+        <td>4.8⭐</td>
+        <td>¥70</td>
+        <td>铁锅炖</td>
+        <td>炭火江湖有烧烤+涮肉双重选择，覆盖面更广</td>
+      </tr>
+      <tr>
+        <td>东北往事</td>
+        <td>3.7⭐</td>
+        <td>¥60</td>
+        <td>东北菜</td>
+        <td>炭火江湖品类更聚焦（涮+烤），夜宵场景更明确</td>
+      </tr>
+      <tr>
+        <td>串串屋</td>
+        <td>3.6⭐</td>
+        <td>¥50</td>
+        <td>串串</td>
+        <td>铜锅涮肉+烧烤双模式，一桌两吃是独特卖点</td>
+      </tr>
+      <tr>
+        <td>筒子沟</td>
+        <td>—</td>
+        <td>¥57</td>
+        <td>铁锅炖</td>
+        <td>炭火江湖更适合年轻人和夜宵场景</td>
+      </tr>
+    </table>
+    <div class="highlight" style="margin-top: 0.5rem;">
+      <strong>核心差异化：</strong>生态城没有第二家「涮烤一体的夜宵店」。铜锅涮肉满足"冬天暖身"需求，烧烤满足"夏天夜宵"需求——<strong>全年无淡季，一店吃两季</strong>。
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 十一、执行节奏 ==================== -->
+<div class="section" id="sec11">
+  <div class="section-header">
+    <div class="section-number">11</div>
+    <h2>执行节奏与时间线 <span>｜45天全流程</span></h2>
+  </div>
+
+  <div class="grid-3">
+    <div class="strategy-card" style="border-top-color: var(--charcoal-light);">
+      <h3>📦 准备期（前15天）</h3>
+      <ul>
+        <li>确定新品牌名、LOGO、VI视觉</li>
+        <li>更换门头招牌、店内装修翻新</li>
+        <li>拍摄菜品/环境照片（专业级）</li>
+        <li>设计团购套餐、上传大众点评</li>
+        <li>开通商户通、智能版收银</li>
+        <li>抖音/小红书账号注册装修</li>
+        <li>准备开业物料（菜单/海报/传单）</li>
+      </ul>
+    </div>
+    <div class="strategy-card" style="border-top-color: var(--orange);">
+      <h3>🔥 引爆期（第1-14天）</h3>
+      <ul>
+        <li>⚡ 前3天：全场8折冲排队效应</li>
+        <li>📱 每日抖音1条+投流</li>
+        <li>👥 邀请3-5位达人探店</li>
+        <li>⭐ 霸王餐/免费试上线</li>
+        <li>📝 每桌引导收藏打卡+评价</li>
+        <li>💬 私域社群开始拉人</li>
+        <li>🤝 异业合作落地执行</li>
+      </ul>
+    </div>
+    <div class="strategy-card" style="border-top-color: var(--gold);">
+      <h3>📈 稳定期（第15-45天）</h3>
+      <ul>
+        <li>⭐ 持续收集好评，冲刺4.0⭐→4.3⭐</li>
+        <li>📱 抖音/小红书持续内容输出</li>
+        <li>🎯 复购券精准推送</li>
+        <li>👥 私域社群日常运营+活动</li>
+        <li>📊 数据分析优化菜品/运营</li>
+        <li>📉 根据ROI调整投放预算</li>
+        <li>🏪 常态化异业合作拓展</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 十二、预算与KPI ==================== -->
+<div class="section" id="sec12">
+  <div class="section-header">
+    <div class="section-number">12</div>
+    <h2>预算分配与KPI <span>｜花钱有数，结果可量化</span></h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>💰 首月预算分配（总计¥13,188-17,688）</h3>
+      <table class="price-table">
+        <tr><th>项目</th><th>预算</th><th>占比</th><th>说明</th></tr>
+        <tr><td>门头招牌+店内VI</td><td>¥3,000-5,000</td><td>23-28%</td><td>一次性投入</td></tr>
+        <tr><td>商户通月费</td><td>¥2,688</td><td>15-20%</td><td>大众点评精准投放</td></tr>
+        <tr><td>达人探店（5位）</td><td>¥2,000-3,000</td><td>15-17%</td><td>免费体验+部分车马费</td></tr>
+        <tr><td>抖音投流</td><td>¥3,000</td><td>17-23%</td><td>同城流量投放</td></tr>
+        <tr><td>小红书素人+薯条</td><td>¥1,500-2,000</td><td>11%</td><td>铺笔记+投流</td></tr>
+        <tr><td>开业活动补贴</td><td>¥1,000-2,000</td><td>8-11%</td><td>折扣差额成本</td></tr>
+        <tr><td><strong>合计</strong></td><td><strong>¥13,188-17,688</strong></td><td><strong>100%</strong></td><td>首月总投入</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>🎯 KPI体系（90%+关注评分和收藏）</h3>
+      <table class="price-table">
+        <tr><th>指标</th><th>第1周</th><th>第2周</th><th>第3-4周</th><th>第2个月</th></tr>
+        <tr><td>点评评分</td><td>3.7⭐</td><td>3.9⭐</td><td>4.0⭐</td><td>4.3⭐</td></tr>
+        <tr><td>门店收藏</td><td>80+</td><td>150+</td><td>300+</td><td>500+</td></tr>
+        <tr><td>团购核销率</td><td>—</td><td>60%+</td><td>70%+</td><td>75%+</td></tr>
+        <tr><td>好评数量</td><td>8条+</td><td>18条+</td><td>30条+</td><td>60条+</td></tr>
+        <tr><td>私域社群</td><td>50人</td><td>150人</td><td>300人</td><td>500人</td></tr>
+        <tr><td>抖音曝光</td><td>2万+</td><td>5万+</td><td>10万+</td><td>20万+</td></tr>
+        <tr><td>日均营收</td><td>¥2,000</td><td>¥3,000</td><td>¥3,500</td><td>¥4,000+</td></tr>
+      </table>
+      <div class="highlight" style="margin-top: 0.5rem;">
+        <strong>KPI排序</strong>：评分 ＞ 收藏 ＞ 好评数 ＞ 核销率 ＞ 私域人数 ＞ 营收<br>
+        先做口碑（评分和收藏）再做营收，前30天不要急于赚钱
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 十三、风险预案 ==================== -->
+<div class="section" id="sec13">
+  <div class="section-header">
+    <div class="section-number">13</div>
+    <h2>风险预案 <span>｜提前想好退路</span></h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>⚠️ 常见风险与应对</h3>
+      <ul>
+        <li><strong>开业热度不够</strong> → 加大抖音投流+商户通预算，增加达人探店数量</li>
+        <li><strong>出现差评（真实）</strong> → 立即回复+整改+私信顾客致歉+邀请再次体验</li>
+        <li><strong>出现差评（恶意）</strong> → 保留证据→平台申诉→不起正面冲突</li>
+        <li><strong>团购核销率低</strong> → 优化团购页文案+店员加强引导核销</li>
+        <li><strong>老顾客差评回流</strong> → 线上线下同步说明"换了新老板新团队"</li>
+        <li><strong>排队过长差评</strong> → 设置排队等候区+赠饮品+预估等候时间告知</li>
+        <li><strong>竞品跟进降价</strong> → 不跟价格战，强化品质和服务差异化</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🛡️ 合规红线（不可触碰）</h3>
+      <ul>
+        <li><strong>❌ 禁止</strong>：好评返现、写好评送东西、刷单刷评（平台封店风险）</li>
+        <li><strong>✅ 可以</strong>：收藏打卡送饮品、评价送小菜（注意话术不要说"好评"说"评价"）</li>
+        <li><strong>❌ 禁止</strong>：门店使用未授权的品牌名称/Slogan</li>
+        <li><strong>❌ 禁止</strong>：大众点评新旧店同时运营（会被封）</li>
+        <li><strong>✅ 必须</strong>：营业执照合规、食品经营许可齐全、消防安全到位</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 十四、总结 ==================== -->
+<div class="section" style="border-bottom: none;">
+  <div class="section-header">
+    <div class="section-number">*</div>
+    <h2>一句话总结 <span>｜核心逻辑</span></h2>
+  </div>
+
+  <div class="highlight">
+    <strong>完整链路：</strong><br>
+    <strong>更名换门头（切割旧口碑）→ 大众点评重建新店（从零起评分+商户通精准截流）→ 抖音内容种草（同城投流+达人探店）→ 小红书图文铺量（搜索截流+素人口碑）→ 到店体验转化（门店SOP+活动引导）→ 私域+储值+智能收银（复购锁客）</strong>
+  </div>
+
+  <div class="grid-2" style="margin-top: 1rem;">
+    <div class="card">
+      <h3>✅ 核心动作（10项）</h3>
+      <ul>
+        <li>✔ 换门头换店名——和老店彻底切割</li>
+        <li>✔ 大众点评重建新店，新店保护期冲评分</li>
+        <li>✔ 开通商户通，做3公里精准投放</li>
+        <li>✔ 抖音每日1条+投流，达人探店5位</li>
+        <li>✔ 小红书图文铺量，布局搜索关键词</li>
+        <li>✔ 开业7天折扣活动+储值赠送</li>
+        <li>✔ 每桌引导收藏打卡加群</li>
+        <li>✔ 开通美团智能版收银统管数据</li>
+        <li>✔ 私域社群每日运营+每周活动</li>
+        <li>✔ 异业合作引流（万达影城+KTV+酒店）</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>❌ 切忌动作</h3>
+      <ul>
+        <li>✘ 沿用旧店名继续经营（自找麻烦）</li>
+        <li>✘ 好评返现/写好评送东西（平台红线）</li>
+        <li>✘ 批量刷评（平台风控必封）</li>
+        <li>✘ 开业热度过去就停止推广（前功尽弃）</li>
+        <li>✘ 差评不回复（等于放弃口碑管理）</li>
+        <li>✘ 只做线上不做线下（体验是根本）</li>
+        <li>✘ 只做线下不做线上（流量天花板低）</li>
+        <li>✘ 与竞品打价格战（伤利润没意义）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="highlight" style="margin-top: 1rem;">
+    <strong>🎯 一句话：</strong><br>
+    生态城万达商圈不缺餐饮店，缺的是<strong>「涮烤一体 + 有夜宵氛围 + 新店热度」</strong>的店。<br>
+    炭火江湖要做的就是——<strong>让周边3公里所有人都知道：新老板来了，店不一样了。</strong>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<div class="footer">
+  <strong>炭火江湖 · 烧烤铜锅涮肉</strong> ｜ 新店引爆与线上运营全案 V2.0<br>
+  地址：滨海新区生态城和意路万达广场万国城汇金广场1层1-228-232号<br>
+  本方案由 1024 Agent 基于门店实际情况智能生成 ｜ 具体执行请结合门店实际调整
+</div>
+
+</body>
+</html>
